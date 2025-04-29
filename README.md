@@ -38,7 +38,7 @@
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
   <a href="#checkered_flag-installation">Installation</a> &#xa0; | &#xa0;
   <a href="#bookmark_tabs-documentation">Documentation</a> &#xa0; | &#xa0;
-  <a href="#lexy-license">License</a> &#xa0; | &#xa0;
+  <a href="#lexy-license">License</a>
 </p>
 
 <br>
@@ -53,7 +53,7 @@ This project would not be possible without the amazing work of the [Learn X in Y
 
 ## :computer: Demo
 
-Coming soon...
+[![asciicast](https://asciinema.org/a/717362.svg)](https://asciinema.org/a/717362)
 
 ## :sparkles: Features
 
