@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.1] - 07.05.2025
+
+### Changed
+
+- Refactored the code to improve readability and maintainability.
+- Small changes to the fzf configuration to improve the user experience.
+
 ## [0.3.0] - 05.05.2025
 
 ### Added
@@ -43,6 +50,7 @@ Initial release with the following features:
 - Local copy to speed up the process and avoid too many requests to the "Learn X in Y minutes" server
 - Auto-update every 60 days
 
+[0.3.1]: https://github.com/antoniorodr/lexy/releases/tag/v0.3.1
 [0.3.0]: https://github.com/antoniorodr/lexy/releases/tag/v0.3.0
 [0.2.0]: https://github.com/antoniorodr/lexy/releases/tag/v0.2.0
 [0.1.0]: https://github.com/antoniorodr/lexy/releases/tag/v0.1.0

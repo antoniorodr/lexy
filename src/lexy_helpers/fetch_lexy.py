@@ -6,7 +6,6 @@ import re
 import datetime
 from pathlib import Path
 
-UPDATE_INTERVAL_DAYS = 60
 
 
 class LexyScraper:
@@ -23,6 +22,7 @@ class LexyScraper:
         self.pattern = r"\.[\w]+"
         self.force = False
         self.languages_list = []
+        self.update_interval_days = 60
 
     def fetch_language(self):
         self.lexy_dir.mkdir(exist_ok=True)
@@ -90,7 +90,7 @@ class LexyScraper:
                 days_since_last_update = (
                     today - datetime.datetime.strptime(last_update, "%Y-%m-%d").date()
                 ).days
-                if days_since_last_update >= UPDATE_INTERVAL_DAYS:
+                if days_since_last_update >= self.update_interval_days:
                     self.fetch_language()
         except FileNotFoundError:
             self.fetch_language()

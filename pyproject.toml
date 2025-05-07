@@ -1,14 +1,14 @@
 [build-system]
-requires = ["setuptools>=61"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "lexy"
-authors = [{ name = "Antonio Rodriguez", email = "antonioinorge@hotmail.com" }]
+version = "0.3.1"
 description = "Lexy is a lightweight CLI tool that fetches programming tutorials from 'Learn X in Y Minutes' directly into your terminal. Quickly search, learn, and reference code examples without leaving your workflow."
-version = "0.3.0"
 readme = "README.md"
 license = "MIT"
+authors = [{ name = "Antonio Rodriguez", email = "antonioinorge@hotmail.com" }]
 requires-python = ">=3.13"
 dependencies = [
   "beautifulsoup4>=4.13.4",
@@ -18,7 +18,11 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-docs = ["mkdocs>=1.5.3", "mkdocs-material>=9.5.18", "mkdocs-awesome-nav>=3.1.1"]
+docs = [
+  "mkdocs>=1.5.3",
+  "mkdocs-material>=9.5.18",
+  "mkdocs-awesome-nav>=3.1.1"
+]
 
 [project.urls]
 Repository = "https://github.com/antoniorodr/lexy"
@@ -27,8 +31,9 @@ Issues = "https://github.com/antoniorodr/lexy/issues"
 [project.scripts]
 lexy = "lexy.lexy:lexy"
 
-[tool.setuptools]
-package-dir = { "" = "src" }
+[tool.hatch.build]
+sources = ["src"]
 
 [tool.pytest.ini_options]
 pythonpath = [".", "src"]
+
