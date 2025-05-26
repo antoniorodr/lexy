@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.4.0 - 26.05.2025
+
+### Changed
+
+- Refactored the code to improve readability and maintainability.
+- Implementation of asynchronous execution to significantly enhance performance during documentation retrieval.
+
 ## [0.3.2] - 21.05.2025
 
 ### Changed
