@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.6] - 19.10.2025
+
+### Added
+
+- New test to verify that `lexy list` works correctly.
+
+### Changed
+
+- Modified some `fzf` options to follow best practices and improve user experience.
+- Refactored some code to improve readability and maintainability.
+
+Thanks @Ajmal30 for the improvements!
+
 ## [0.4.5] - 25.08.2025
 
 ### Changed
@@ -19,8 +32,8 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Refactored `LexyFinder` to simplify logic:
-  - Removed multiple iterations through languages.
-  - Renamed some parameters for improved readability.
+    - Removed multiple iterations through languages.
+    - Renamed some parameters for improved readability.
 
 Thanks @AndreBonda for the refactoring!
 
@@ -105,6 +118,7 @@ Initial release with the following features:
 - Local copy to speed up the process and avoid too many requests to the "Learn X in Y minutes" server
 - Auto-update every 60 days
 
+[0.4.6]: https://github.com/antoniorodr/lexy/releases/tag/v0.4.6
 [0.4.5]: https://github.com/antoniorodr/lexy/releases/tag/v0.4.5
 [0.4.4]: https://github.com/antoniorodr/lexy/releases/tag/v0.4.4
 [0.4.3]: https://github.com/antoniorodr/lexy/releases/tag/v0.4.3
