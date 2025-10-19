@@ -24,7 +24,7 @@ class LexyFinder:
 
         with open(
             f"{file_path}/{found_language["language"]}{found_language["file_extension"]}",
-            "r",
+            "r", encoding="utf-8"
         ) as file:
             full_path = os.path.abspath(file.name)
             subprocess.run(["bat", full_path])

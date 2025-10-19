@@ -115,20 +115,20 @@ class LexyScraper:
         self.create_log()
 
     def save_to_json(self):
-        with open(f"{self.json_path}/languages.json", "w") as f:
+        with open(f"{self.json_path}/languages.json", "w", encoding="utf-8") as f:
             json.dump(self.languages_list, f, indent=4)
 
     def create_file(self, language_full_file_url, file_extension, language_name):
         content_response = self.session.get(language_full_file_url)
         content_soup = BeautifulSoup(content_response.text, "html.parser")
-        with open(f"{self.file_path}/{language_name}{file_extension}", "w") as file:
+        with open(f"{self.file_path}/{language_name}{file_extension}", "w", encoding="utf-8") as file:
             file.write(content_soup.text)
 
     def auto_update(self):
         today = datetime.date.today()
         self._create_mapping()
         try:
-            with open(f"{self.log_path}/last_update.txt", "r") as file:
+            with open(f"{self.log_path}/last_update.txt", "r", encoding="utf-8") as file:
                 last_update = file.read()
                 days_since_last_update = (
                     today - datetime.datetime.strptime(last_update, "%Y-%m-%d").date()
@@ -142,18 +142,18 @@ class LexyScraper:
     def force_update(self):
         self.force = True
         self.fetch_language()
-        with open(f"{self.log_path}/last_update.txt", "w") as file:
+        with open(f"{self.log_path}/last_update.txt", "w", encoding="utf-8") as file:
             file.write(str(datetime.date.today()))
         self.force = False
 
     def create_log(self):
         today = datetime.date.today()
-        with open(f"{self.log_path}/last_update.txt", "w") as file:
+        with open(f"{self.log_path}/last_update.txt", "w", encoding="utf-8") as file:
             file.write(str(today))
 
     def last_modified(self):
         try:
-            with open(f"{self.log_path}/last_update.txt", "r") as file:
+            with open(f"{self.log_path}/last_update.txt", "r", encoding="utf-8") as file:
                 last_update = file.read()
                 last_update = datetime.datetime.strptime(last_update, "%Y-%m-%d").date()
                 last_update = last_update.strftime("%d.%m.%Y")

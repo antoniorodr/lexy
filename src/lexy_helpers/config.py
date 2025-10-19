@@ -3,7 +3,7 @@ from pathlib import Path
 
 DEFAULTS = {
     "fzf": {
-        "preview_command": "bat --style=plain --color=always {}",
+        "preview_command": "bat --style=full {}",
         "preview_window": "right:{percent}%:wrap:cycle",
         "input_label": " Input ",
         "border_label": " Enter: Open with bat │ Ctrl-D/U: scroll preview ",
@@ -47,24 +47,24 @@ def build_fzf_command(config: dict) -> str:
     fzf --style=full \
     --border --padding=1,2 \
     --info=inline \
-    --border-label='{fzf_config.get("border_label", DEFAULTS["fzf"]["border_label"])}' \
-    --input-label='{fzf_config.get("input_label", DEFAULTS["fzf"]["input_label"])}' \
-    --preview='{preview_command}' \
+    --border-label="{fzf_config.get('border_label', DEFAULTS['fzf']['border_label'])}" \
+    --input-label="{fzf_config.get('input_label', DEFAULTS['fzf']['input_label'])}" \
+    --preview="{preview_command}" \
     --preview-window={preview_window} \
-    --bind='ctrl-d:preview-down' \
-    --bind='ctrl-u:preview-up' \
-    --bind='enter:execute(bat {{}})' \
-    --bind='result:transform-list-label:
+    --bind="ctrl-d:preview-down" \
+    --bind="ctrl-u:preview-up" \
+    --bind="enter:execute(bat {{}})" \
+    --bind="result:transform-list-label:
         if [[ -z $FZF_QUERY ]]; then
-        echo " $FZF_MATCH_COUNT items "
+        echo ' $FZF_MATCH_COUNT items '
         else
-        echo " $FZF_MATCH_COUNT matches for [$FZF_QUERY] "
-        fi' \
-    --bind='focus:transform-preview-label:[[ -n {{}} ]] && printf " Previewing [%s] " {{}}' \
-    --bind='focus:+transform-header:file --brief {{}} || echo "No file selected"' \
-    --color='border:{colors["border"]},label:{colors["label"]}' \
-    --color='preview-border:{colors["preview_border"]},preview-label:{colors["preview_label"]}' \
-    --color='list-border:{colors["list_border"]},list-label:{colors["list_label"]}' \
-    --color='input-border:{colors["input_border"]},input-label:{colors["input_label"]}' \
-    --color='header-border:{colors["header_border"]}'
+        echo ' $FZF_MATCH_COUNT matches for [$FZF_QUERY] '
+        fi" \
+    --bind="focus:transform-preview-label:[[ -n {{}} ]] && printf ' Previewing [%s] ' {{}}" \
+    --bind="focus:+transform-header:file --brief {{}} || echo 'No file selected'" \
+    --color="border:{colors['border']},label:{colors['label']}" \
+    --color="preview-border:{colors['preview_border']},preview-label:{colors['preview_label']}" \
+    --color="list-border:{colors['list_border']},list-label:{colors['list_label']}" \
+    --color="input-border:{colors['input_border']},input-label:{colors['input_label']}" \
+    --color="header-border:{colors['header_border']}"
     """.strip()

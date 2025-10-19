@@ -23,7 +23,7 @@ def lexy(language):
     LexyInit(lexy_scraper).ensure_languages_file()
     lexy_scraper.auto_update()
     language = language.lower()
-    with open(f"{lexy_scraper.json_path}/languages.json", "r") as f:
+    with open(f"{lexy_scraper.json_path}/languages.json", "r", encoding="utf-8") as f:
         languages = json.load(f)
         lexy_finder = LexyFinder(languages, lexy_scraper)
         match language:
