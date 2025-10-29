@@ -1,5 +1,5 @@
 <div align="center" id="top">
-  <img height=200px src="./.github/lexy.png" alt="lexy" />
+  <img height=200px src="./assets/lexy.png" alt="lexy" />
 
 &#xa0;
 
@@ -51,7 +51,7 @@ This project would not be possible without the amazing work of the [Learn X in Y
 ## :computer: Demo
 
 <div align="center" id="top">
-  <img src="./.github/lexy.gif" alt="lexy" />
+  <img src="./assets/lexy.gif" alt="lexy" />
 
 &#xa0;
 
