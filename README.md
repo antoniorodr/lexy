@@ -162,8 +162,7 @@ If you want to modify syntax highlighting for file previews powered by `bat`, re
 default_editor = "bat"
 
 [fzf]
-preview_command = "bat --style=full {}"
-preview_window = "right:{percent}%:wrap:cycle"
+preview_percent = "60"
 input_label = " Input "
 border_label = " Enter: Open with bat │ Ctrl-D/U: scroll preview "
 
@@ -182,6 +181,7 @@ header_border = "#6699cc"
 - `preview_percent` changes the size of the file preview window
 - `input_label` changes the text of the input label
 - `border_label` changes the text of the top of the window
+- `default_editor` sets the default editor used to open files (can be `bat` or `nvim`)
 
 ![Lexy, with redimensioned preview window](docs/lexy_layout_changed.png)
 

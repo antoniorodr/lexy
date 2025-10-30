@@ -4,7 +4,7 @@ from pathlib import Path
 
 DEFAULTS = {
     "fzf": {
-        "preview_command": "bat --style=full {}",
+        "preview_command": "bat --color=always {}",
         "preview_window": "right:{percent}%:wrap:cycle",
         "input_label": " Input ",
         "border_label": " Enter: Open with bat │ Ctrl-D/U: scroll preview ",
@@ -30,7 +30,16 @@ def create_config_file():
             f.write("[editor]\n")
             f.write(tomlkit.dumps({"default_editor": "bat"}))
             f.write("\n")
-            f.write(tomlkit.dumps({"fzf": DEFAULTS["fzf"]}))
+            f.write("[fzf]\n")
+            f.write(
+                tomlkit.dumps(
+                    {
+                        "preview_percent": "60",
+                        "input_label": " Input ",
+                        "border_label": " Enter: Open with bat │ Ctrl-D/U: scroll preview ",
+                    }
+                )
+            )
             f.write("\n")
             f.write(tomlkit.dumps({"colors": DEFAULTS["colors"]}))
     return config_path
