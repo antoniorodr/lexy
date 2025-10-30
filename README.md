@@ -149,7 +149,7 @@ You can find the full documentation [here](https://antoniorodr.github.io/lexy/).
 
 Starting from **Lexy v0.4.2**, you can customize the appearance of the `fzf` interface used in the `lexy list` command.
 
-By default, Lexy applies a color palette inspired by **Catppuccin Mocha**, but you can override it by creating a `config.toml` file in your Lexy config directory:
+By default, Lexy applies a color palette inspired by **Catppuccin Mocha**, but you can override it by editing the `config.toml` file in your Lexy config directory:
 
 If you want to modify syntax highlighting for file previews powered by `bat`, refer to the [bat documentation](https://github.com/sharkdp/bat).
 
@@ -158,8 +158,12 @@ If you want to modify syntax highlighting for file previews powered by `bat`, re
 ##### 🛠 Default Configuration
 
 ```toml
+[editor]
+default_editor = "bat"
+
 [fzf]
-preview_percent = "60"
+preview_command = "bat --style=full {}"
+preview_window = "right:{percent}%:wrap:cycle"
 input_label = " Input "
 border_label = " Enter: Open with bat │ Ctrl-D/U: scroll preview "
 
