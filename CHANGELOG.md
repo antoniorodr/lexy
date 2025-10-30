@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.0] - 30.10.2025
+
+### Added
+
+- Lexy will now create the `config.toml` with the default values the first time it runs. This file is located in `~/.config/lexy/`.
+- The `default editor` is still `bat`, but now it's possible to change it to `nvim` using the `Lexy editor` command. This closes #11.
+
 ## [0.4.6] - 19.10.2025
 
 ### Added
@@ -118,6 +125,7 @@ Initial release with the following features:
 - Local copy to speed up the process and avoid too many requests to the "Learn X in Y minutes" server
 - Auto-update every 60 days
 
+[0.5.0]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.0
 [0.4.6]: https://github.com/antoniorodr/lexy/releases/tag/v0.4.6
 [0.4.5]: https://github.com/antoniorodr/lexy/releases/tag/v0.4.5
 [0.4.4]: https://github.com/antoniorodr/lexy/releases/tag/v0.4.4

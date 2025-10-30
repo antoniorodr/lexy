@@ -8,7 +8,7 @@ authors = [
   { name = "Antonio Rodriguez", email = "kontakt@antoniorodriguez.no" },
 ]
 description = "Lexy is a lightweight CLI tool that fetches programming tutorials from 'Learn X in Y Minutes' directly into your terminal. Quickly search, learn, and reference code examples without leaving your workflow."
-version = "0.4.6"
+version = "0.5.0"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.13"
@@ -16,6 +16,7 @@ dependencies = [
   "beautifulsoup4>=4.13.4",
   "click>=8.1.8",
   "requests>=2.32.3",
+  "tomlkit>=0.13.3",
   "typer>=0.15.3",
 ]
 

@@ -1,3 +1,4 @@
+import tomlkit
 import tomllib
 from pathlib import Path
 
@@ -22,8 +23,34 @@ DEFAULTS = {
 }
 
 
-def load_config():
+def create_config_file():
     config_path = Path.home() / ".config/lexy/config.toml"
+    if not config_path.exists():
+        with config_path.open("w") as f:
+            f.write("[editor]\n")
+            f.write(tomlkit.dumps({"default_editor": "bat"}))
+            f.write("\n")
+            f.write(tomlkit.dumps({"fzf": DEFAULTS["fzf"]}))
+            f.write("\n")
+            f.write(tomlkit.dumps({"colors": DEFAULTS["colors"]}))
+    return config_path
+
+
+def change_default_editor(editor: str):
+    config_path = create_config_file()
+
+    with config_path.open("r") as f:
+        content = f.read().strip()
+        config = tomlkit.parse(content) if content else tomlkit.document()
+        config["editor"]["default_editor"] = editor
+        f.close()
+
+    with config_path.open("w") as f:
+        f.write(tomlkit.dumps(config))
+
+
+def load_config():
+    config_path = create_config_file()
     config = {}
     if config_path.exists():
         try:
@@ -36,6 +63,11 @@ def load_config():
 
 def build_fzf_command(config: dict) -> str:
     preview_command = DEFAULTS["fzf"]["preview_command"]
+    editor = config.get("editor", {}).get("default_editor", "bat")
+
+    editor_command = (
+        f"{editor} -R -c 'lua vim.diagnostic.disable()'" if editor == "nvim" else editor
+    )
 
     fzf_config = config.get("fzf", {})
     colors = {**DEFAULTS["colors"], **config.get("colors", {})}
@@ -47,13 +79,13 @@ def build_fzf_command(config: dict) -> str:
     fzf --style=full \
     --border --padding=1,2 \
     --info=inline \
-    --border-label="{fzf_config.get('border_label', DEFAULTS['fzf']['border_label'])}" \
-    --input-label="{fzf_config.get('input_label', DEFAULTS['fzf']['input_label'])}" \
+    --border-label="{fzf_config.get("border_label", DEFAULTS["fzf"]["border_label"])}" \
+    --input-label="{fzf_config.get("input_label", DEFAULTS["fzf"]["input_label"])}" \
     --preview="{preview_command}" \
     --preview-window={preview_window} \
     --bind="ctrl-d:preview-down" \
     --bind="ctrl-u:preview-up" \
-    --bind="enter:execute(bat {{}})" \
+    --bind="enter:execute({editor_command} {{}})" \
     --bind="result:transform-list-label:
         if [[ -z $FZF_QUERY ]]; then
         echo ' $FZF_MATCH_COUNT items '
@@ -62,9 +94,9 @@ def build_fzf_command(config: dict) -> str:
         fi" \
     --bind="focus:transform-preview-label:[[ -n {{}} ]] && printf ' Previewing [%s] ' {{}}" \
     --bind="focus:+transform-header:file --brief {{}} || echo 'No file selected'" \
-    --color="border:{colors['border']},label:{colors['label']}" \
-    --color="preview-border:{colors['preview_border']},preview-label:{colors['preview_label']}" \
-    --color="list-border:{colors['list_border']},list-label:{colors['list_label']}" \
-    --color="input-border:{colors['input_border']},input-label:{colors['input_label']}" \
-    --color="header-border:{colors['header_border']}"
+    --color="border:{colors["border"]},label:{colors["label"]}" \
+    --color="preview-border:{colors["preview_border"]},preview-label:{colors["preview_label"]}" \
+    --color="list-border:{colors["list_border"]},list-label:{colors["list_label"]}" \
+    --color="input-border:{colors["input_border"]},input-label:{colors["input_label"]}" \
+    --color="header-border:{colors["header_border"]}"
     """.strip()

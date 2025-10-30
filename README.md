@@ -77,7 +77,7 @@ The following tools were used in this project:
 
 ## :white_check_mark: Requirements
 
-Before starting :checkered_flag:, you need to have [bat](https://github.com/sharkdp/bat) and [fzf](https://github.com/junegunn/fzf) installed.
+Before starting :checkered_flag:, you need to have [bat](https://github.com/sharkdp/bat) and [fzf](https://github.com/junegunn/fzf) installed. You can install `nvim` as well if you want to use it as your default editor.
 
 ### Important for Linux users
 
@@ -133,6 +133,8 @@ Usage: lexy [OPTIONS] <LANGUAGE>
   - Use "update" to force update Lexy.
 
   - Use "modified" to view the last modified date of Lexy.
+
+  - Use "editor" to set up your default editor for viewing documentation.
 
 Options:
   --version  Show the version and exit.
