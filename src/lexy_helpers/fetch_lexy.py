@@ -121,23 +121,31 @@ class LexyScraper:
     def create_file(self, language_full_file_url, file_extension, language_name):
         content_response = self.session.get(language_full_file_url)
         content_soup = BeautifulSoup(content_response.text, "html.parser")
-        with open(f"{self.file_path}/{language_name}{file_extension}", "w", encoding="utf-8") as file:
+        with open(
+            f"{self.file_path}/{language_name}{file_extension}", "w", encoding="utf-8"
+        ) as file:
             file.write(content_soup.text)
 
     def auto_update(self):
         today = datetime.date.today()
         self._create_mapping()
         try:
-            with open(f"{self.log_path}/last_update.txt", "r", encoding="utf-8") as file:
+            with open(
+                f"{self.log_path}/last_update.txt", "r", encoding="utf-8"
+            ) as file:
                 last_update = file.read()
                 days_since_last_update = (
                     today - datetime.datetime.strptime(last_update, "%Y-%m-%d").date()
                 ).days
                 if days_since_last_update >= self.update_interval_days:
+                    self.force = True
                     self.fetch_language()
+                    self.force = False
         except FileNotFoundError:
+            self.force = True
             self.fetch_language()
             self.create_log()
+            self.force = False
 
     def force_update(self):
         self.force = True
@@ -153,7 +161,9 @@ class LexyScraper:
 
     def last_modified(self):
         try:
-            with open(f"{self.log_path}/last_update.txt", "r", encoding="utf-8") as file:
+            with open(
+                f"{self.log_path}/last_update.txt", "r", encoding="utf-8"
+            ) as file:
                 last_update = file.read()
                 last_update = datetime.datetime.strptime(last_update, "%Y-%m-%d").date()
                 last_update = last_update.strftime("%d.%m.%Y")
