@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.2] - 16.01.2026
+
+### Fixed
+
+- Fixed a bug where Lexy did not auto-update each 60 days
+
 ## [0.5.1] - 30.10.2025
 
 ### Fixed
@@ -131,6 +137,7 @@ Initial release with the following features:
 - Local copy to speed up the process and avoid too many requests to the "Learn X in Y minutes" server
 - Auto-update every 60 days
 
+[0.5.2]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.2
 [0.5.1]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.1
 [0.5.0]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.0
 [0.4.6]: https://github.com/antoniorodr/lexy/releases/tag/v0.4.6
