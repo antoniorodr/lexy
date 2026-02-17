@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.3] - 17.02.2026
+
+### Updated
+
+- Updated dependencies to the latest versions.
+
 ## [0.5.2] - 16.01.2026
 
 ### Fixed
@@ -51,8 +57,8 @@ Thanks @Ajmal30 for the improvements!
 ### Changed
 
 - Refactored `LexyFinder` to simplify logic:
-    - Removed multiple iterations through languages.
-    - Renamed some parameters for improved readability.
+  - Removed multiple iterations through languages.
+  - Renamed some parameters for improved readability.
 
 Thanks @AndreBonda for the refactoring!
 
