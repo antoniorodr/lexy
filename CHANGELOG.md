@@ -143,6 +143,7 @@ Initial release with the following features:
 - Local copy to speed up the process and avoid too many requests to the "Learn X in Y minutes" server
 - Auto-update every 60 days
 
+[0.5.3]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.3
 [0.5.2]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.2
 [0.5.1]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.1
 [0.5.0]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.0
