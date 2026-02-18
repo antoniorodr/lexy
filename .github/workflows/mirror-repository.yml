@@ -6,6 +6,6 @@ on: [push]
             fetch-depth: 0
         - uses: yesolutions/mirror-action@master
           with:
-            REMOTE: 'https://gitlab.com/spyoungtech/mirror-action.git'
+            REMOTE: 'https://codeberg.org/antoniorodr/lexy'
             GIT_USERNAME: antoniorodr
             GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
