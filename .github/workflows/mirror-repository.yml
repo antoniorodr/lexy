@@ -9,6 +9,5 @@ jobs:
           fetch-depth: 0
       - uses: yesolutions/mirror-action@master
         with:
-          REMOTE: "https://codeberg.org/antoniorodr/lexy"
-          GIT_USERNAME: antoniorodr
-          GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+          REMOTE: "git@codeberg.org:antoniorodr/lexy.git"
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.CODEBERG_SSH_PRIVATE_KEY }}
