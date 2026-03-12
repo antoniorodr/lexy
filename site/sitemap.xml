@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <url>
+        <loc>https://mydomain.org/lexy/</loc>
+      </url>
+      <url>
+        <loc>https://mydomain.org/lexy/getting%20started/</loc>
+      </url>
+      <url>
+        <loc>https://mydomain.org/lexy/installation/</loc>
+      </url>
+      <url>
+        <loc>https://mydomain.org/lexy/theming/</loc>
+      </url>
+      <url>
+        <loc>https://mydomain.org/lexy/usage/</loc>
+      </url>
+</urlset>
