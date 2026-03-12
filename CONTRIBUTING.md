@@ -15,68 +15,66 @@ All participation is governed by our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 1. Fork the project and clone your fork:
 
-   ```bash
-   git clone https://github.com/antoniorodr/lexy
-   cd lexy
-   ```
+    ```bash
+    git clone https://github.com/antoniorodr/lexy
+    cd lexy
+    ```
 
 2. Create a feature branch:
 
-   ```bash
-   git checkout -b my-feature
-   ```
+    ```bash
+    git checkout -b my-feature
+    ```
 
 3. Set up the environment with [uv](https://github.com/astral-sh/uv):
 
-   ```bash
-   uv venv
-   source .venv/bin/activate
-   uv sync
-   ```
+    ```bash
+    uv venv
+    source .venv/bin/activate
+    uv sync
+    ```
 
 4. (Optional) Uninstall Homebrew version of Lexy:
 
-   ```bash
-   brew uninstall lexy
-   ```
+    ```bash
+    brew uninstall lexy
+    ```
 
 5. Install the CLI locally in editable mode:
 
-   ```bash
-   uv tool install . -e
-   ```
+    ```bash
+    uv tool install . -e
+    ```
 
 6. Run the tool:
 
-   ```bash
-   lexy --help
-   ```
+    ```bash
+    lexy --help
+    ```
 
 7. (Optional) Uninstall local version when you are done:
 
-   ```bash
-   uv tool uninstall lexy
-   ```
+    ```bash
+    uv tool uninstall lexy
+    ```
 
 ## Testing
 
-This project uses [pytest](https://docs.pytest.org/en/stable/) for testing. To run the tests:
+This project uses [pytest](https://docs.pytest.org/en/stable/) for testing and coverage reporting.
+
+Dev dependencies (including `pytest-cov`) are installed automatically when you run:
+
+```bash
+uv sync --group dev
+```
+
+To run the tests with coverage:
 
 ```bash
 pytest
 ```
 
-To install this tool, run:
-
-```bash
-uv pip install pytest
-```
-
-or
-
-```bash
-pip install pytest
-```
+Coverage is configured in `pyproject.toml` and will output a summary in the terminal as well as a `coverage.lcov` file.
 
 ## Commit Style
 
@@ -92,9 +90,9 @@ docs: improve usage section
 
 1. Push your feature branch:
 
-   ```bash
-   git push origin my-feature
-   ```
+    ```bash
+    git push origin my-feature
+    ```
 
 2. Open a pull request via GitHub’s web interface.
 
