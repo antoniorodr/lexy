@@ -4,40 +4,40 @@ repo_url: https://github.com/antoniorodr/lexy
 repo_name: Lexy
 edit_uri: edit/main/docs/
 theme:
-  name: material
-  logo: lexy.png
-  icon:
-    repo: fontawesome/brands/github
-  favicon: lexy.png
-  features:
-    - navigation.instant
-    - navigation.instant.prefetch
-    - navigation.instant.progress
-    - search.suggest
-    - navigation.footer
-    - navigation.path
-    - navigation.top
-  palette:
-    - scheme: default
-      primary: deep purple
-      accent: deep purple
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
+    name: material
+    logo: lexy.png
+    icon:
+        repo: fontawesome/brands/github
+    favicon: lexy.png
+    features:
+        - navigation.instant
+        - navigation.instant.prefetch
+        - navigation.instant.progress
+        - search.suggest
+        - navigation.footer
+        - navigation.path
+        - navigation.top
+    palette:
+        - scheme: default
+          primary: deep purple
+          accent: deep purple
+          toggle:
+              icon: material/brightness-7
+              name: Switch to dark mode
 
-    - scheme: slate
-      primary: deep purple
-      accent: deep purple
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
-        primary: deep purple
-        accent: deep purple
+        - scheme: slate
+          primary: deep purple
+          accent: deep purple
+          toggle:
+              icon: material/brightness-4
+              name: Switch to light mode
+              primary: deep purple
+              accent: deep purple
 plugins:
-  - search
-  - awesome-nav
+    - search
+    - awesome-nav
 extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/antoniorodr
-copyright: Copyright &copy; 2025 - Antonio Rodriguez
+    social:
+        - icon: fontawesome/brands/github
+          link: https://github.com/antoniorodr
+copyright: Copyright &copy; 2026 - Antonio Rodriguez
