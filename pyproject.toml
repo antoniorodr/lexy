@@ -20,9 +20,6 @@ dependencies = [
   "typer>=0.15.3",
 ]
 
-[project.optional-dependencies]
-docs = ["mkdocs>=1.5.3", "mkdocs-material>=9.5.18", "mkdocs-awesome-nav>=3.1.1"]
-
 [project.urls]
 Repository = "https://github.com/antoniorodr/lexy"
 Issues = "https://github.com/antoniorodr/lexy/issues"
@@ -35,3 +32,12 @@ package-dir = { "" = "src" }
 
 [tool.pytest.ini_options]
 pythonpath = [".", "src"]
+addopts = "--cov=lexy --cov=lexy_helpers --cov-report=term-missing --cov-report=lcov:coverage.lcov"
+
+[dependency-groups]
+dev = [
+  "zensical>=0.0.26",
+  "pytest-cov>=7.0.0",
+  "pytest-asyncio>=1.2.0",
+  "pytest>=8.3.5",
+]
