@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.4] - 31.03.2026
+
+### Fixed
+
+- Fixed a bug where disabling the diagnostic messages in the configuration file did not work as expected. Now `:lua vim.diagnostic.enable(false)` is used to disable diagnostics in neovim when visualizing lexy documentation.
+
 ## [0.5.3] - 17.02.2026
 
 ### Updated
@@ -143,6 +149,7 @@ Initial release with the following features:
 - Local copy to speed up the process and avoid too many requests to the "Learn X in Y minutes" server
 - Auto-update every 60 days
 
+[0.5.4]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.4
 [0.5.3]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.3
 [0.5.2]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.2
 [0.5.1]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.1

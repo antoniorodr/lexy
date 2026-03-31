@@ -39,7 +39,7 @@ class LexyFinder:
             full_path = os.path.abspath(file.name)
             if self.editor == "nvim":
                 subprocess.run(
-                    ["nvim", "-R", "-c", "lua vim.diagnostic.disable()", full_path]
+                    ["nvim", "-R", "-c", "lua vim.diagnostic.enable(false)", full_path]
                 )
                 return
             subprocess.run([self.editor, full_path])
