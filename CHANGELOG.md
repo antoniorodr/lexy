@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.0] - 31.03.2026
+
+### Performance
+
+- Improved fetch speed by parallelizing file downloads inside the thread pool, increasing `max_workers` from 8 to 20, removing unnecessary HTML parsing in `create_file`, and using a set for O(1) lookup of already-fetched languages.
+
 ## [0.5.4] - 31.03.2026
 
 ### Fixed
@@ -149,6 +155,7 @@ Initial release with the following features:
 - Local copy to speed up the process and avoid too many requests to the "Learn X in Y minutes" server
 - Auto-update every 60 days
 
+[0.6.0]: https://github.com/antoniorodr/lexy/releases/tag/v0.6.0
 [0.5.4]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.4
 [0.5.3]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.3
 [0.5.2]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.2
