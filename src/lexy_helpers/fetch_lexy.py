@@ -55,9 +55,13 @@ class LexyScraper:
         self.soup = BeautifulSoup(response.text, "html.parser")
         self.languages = self.soup.select("tr td.name a")
 
+        existing_names = {lang["language"] for lang in self.languages_list}
+
         def process_language(language):
             language_name = language.text.strip()
             if not language.get("href") or language_name == "AWK":
+                return None
+            if not self.force and language_name in existing_names:
                 return None
             try:
                 language_url = language.get("href")
@@ -74,16 +78,12 @@ class LexyScraper:
                     "language_file_url": language_file_full_url,
                     "file_extension": file_extension,
                 }
-                return (
-                    language_dict,
-                    language_file_full_url,
-                    file_extension,
-                    language_name,
-                )
+                self.create_file(language_file_full_url, file_extension, language_name)
+                return language_dict
             except Exception:
                 return None
 
-        with ThreadPoolExecutor(max_workers=8) as executor:
+        with ThreadPoolExecutor(max_workers=20) as executor:
             futures = [
                 executor.submit(process_language, lang) for lang in self.languages
             ]
@@ -104,12 +104,7 @@ class LexyScraper:
                     progress.update(task, advance=1)
 
                     if result:
-                        lang_dict, file_url, extension, name = result
-                        if self.force or name not in [
-                            lang["language"] for lang in self.languages_list
-                        ]:
-                            self.languages_list.append(lang_dict)
-                            self.create_file(file_url, extension, name)
+                        self.languages_list.append(result)
 
         self.save_to_json()
         self.create_log()
@@ -120,11 +115,10 @@ class LexyScraper:
 
     def create_file(self, language_full_file_url, file_extension, language_name):
         content_response = self.session.get(language_full_file_url)
-        content_soup = BeautifulSoup(content_response.text, "html.parser")
         with open(
             f"{self.file_path}/{language_name}{file_extension}", "w", encoding="utf-8"
         ) as file:
-            file.write(content_soup.text)
+            file.write(content_response.text)
 
     def auto_update(self):
         today = datetime.date.today()
