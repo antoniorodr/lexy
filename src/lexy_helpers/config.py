@@ -75,7 +75,9 @@ def build_fzf_command(config: dict) -> str:
     editor = config.get("editor", {}).get("default_editor", "bat")
 
     editor_command = (
-        f"{editor} -R -c 'lua vim.diagnostic.disable()'" if editor == "nvim" else editor
+        f"{editor} -R -c 'lua vim.diagnostic.enable(false)'"
+        if editor == "nvim"
+        else editor
     )
 
     fzf_config = config.get("fzf", {})
