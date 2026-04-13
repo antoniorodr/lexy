@@ -1,4 +1,4 @@
-![lexy](./assets/lexy.png)
+# `lexy`
 
 > [!caution]
 > **Status:** Under development
