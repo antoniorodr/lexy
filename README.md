@@ -105,5 +105,3 @@ For full usage details and theming examples, see the [documentation site](https:
 If you find the project useful, you can support the author here:
 
 [![GitHub Sponsor](https://img.shields.io/badge/Sponsor_on_GitHub-30363D?logo=github&style=for-the-badge)](https://github.com/sponsors/antoniorodr)
-
-[Back to top](#lexy)
