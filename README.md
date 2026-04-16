@@ -12,7 +12,7 @@ Lexy keeps a local cache of the documentation so you can browse content offline,
 Full documentation is available at [antoniorodr.github.io/lexy](https://antoniorodr.github.io/lexy/).
 
 >[!tip]
->If you uses Neovim, check out the [lexy.nvim plugin](https://github.com/antoniorodr/lexy.nvim)
+>If you use Neovim, check out the [lexy.nvim plugin](https://github.com/antoniorodr/lexy.nvim)
 
 ## 🎬 Demo
 
