@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.1] - 17.04.2026
+
+### Updated
+
+- Updated dependencies to the latest versions.
+
+### Added
+
+- Added typing hints to the codebase to improve code readability and maintainability.
+
 ## [0.6.0] - 31.03.2026
 
 ### Performance
@@ -155,6 +165,7 @@ Initial release with the following features:
 - Local copy to speed up the process and avoid too many requests to the "Learn X in Y minutes" server
 - Auto-update every 60 days
 
+[0.6.1]: https://github.com/antoniorodr/lexy/releases/tag/v0.6.1
 [0.6.0]: https://github.com/antoniorodr/lexy/releases/tag/v0.6.0
 [0.5.4]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.4
 [0.5.3]: https://github.com/antoniorodr/lexy/releases/tag/v0.5.3
