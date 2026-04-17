@@ -1,8 +1,38 @@
 import tomlkit
+from typing import TypedDict
 import tomllib
 from pathlib import Path
 
-DEFAULTS = {
+
+class EditorConfig(TypedDict, total=False):
+    default_editor: str
+
+
+class FzfConfig(TypedDict, total=False):
+    preview_percent: str
+    input_label: str
+    border_label: str
+
+
+class ColorsConfig(TypedDict, total=False):
+    border: str
+    label: str
+    preview_border: str
+    preview_label: str
+    list_border: str
+    list_label: str
+    input_border: str
+    input_label: str
+    header_border: str
+
+
+class Config(TypedDict, total=False):
+    editor: EditorConfig
+    fzf: FzfConfig
+    colors: ColorsConfig
+
+
+DEFAULTS: dict[str, dict[str, str]] = {
     "fzf": {
         "preview_command": "bat --color=always {}",
         "preview_window": "right:{percent}%:wrap:cycle",
@@ -23,8 +53,8 @@ DEFAULTS = {
 }
 
 
-def create_config_file():
-    config_path = Path.home() / ".config/lexy/config.toml"
+def create_config_file() -> Path:
+    config_path: Path = Path.home() / ".config/lexy/config.toml"
     if not config_path.exists():
         with config_path.open("w") as f:
             f.write("[editor]\n")
@@ -45,12 +75,14 @@ def create_config_file():
     return config_path
 
 
-def change_default_editor(editor: str):
-    config_path = create_config_file()
+def change_default_editor(editor: str) -> None:
+    config_path: Path = create_config_file()
 
     with config_path.open("r") as f:
-        content = f.read().strip()
-        config = tomlkit.parse(content) if content else tomlkit.document()
+        content: str = f.read().strip()
+        config: tomlkit.TOMLDocument = (
+            tomlkit.parse(content) if content else tomlkit.document()
+        )
         config["editor"]["default_editor"] = editor
         f.close()
 
@@ -70,21 +102,23 @@ def load_config():
     return config
 
 
-def build_fzf_command(config: dict) -> str:
-    preview_command = DEFAULTS["fzf"]["preview_command"]
-    editor = config.get("editor", {}).get("default_editor", "bat")
+def build_fzf_command(config: Config) -> str:
+    preview_command: str = DEFAULTS["fzf"]["preview_command"]
+    editor: str = config.get("editor", {}).get("default_editor", "bat")
 
-    editor_command = (
+    editor_command: str = (
         f"{editor} -R -c 'lua vim.diagnostic.enable(false)'"
         if editor == "nvim"
         else editor
     )
 
-    fzf_config = config.get("fzf", {})
-    colors = {**DEFAULTS["colors"], **config.get("colors", {})}
+    fzf_config: FzfConfig = config.get("fzf", {})
+    colors: dict[str, str] | object = {**DEFAULTS["colors"], **config.get("colors", {})}
 
-    preview_percent = fzf_config.get("preview_percent", "60")
-    preview_window = DEFAULTS["fzf"]["preview_window"].format(percent=preview_percent)
+    preview_percent: str = fzf_config.get("preview_percent", "60")
+    preview_window: str = DEFAULTS["fzf"]["preview_window"].format(
+        percent=preview_percent
+    )
 
     return f"""
     fzf --style=full \

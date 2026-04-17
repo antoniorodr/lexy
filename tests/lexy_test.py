@@ -8,7 +8,7 @@ from click.testing import CliRunner
 from lexy.lexy import lexy
 
 
-def _base_mocks(MockScraper, MockInit):
+def _base_mocks(MockScraper, MockInit) -> MagicMock:
     mock_scraper = MockScraper.return_value
     mock_scraper.auto_update = MagicMock()
     mock_scraper.json_path = "/test/path"
@@ -20,7 +20,7 @@ FAKE_JSON = '[{"language": "Python", "language_url": "http://x", "language_file_
 
 
 @pytest.fixture
-def runner():
+def runner() -> CliRunner:
     return CliRunner()
 
 
@@ -35,15 +35,15 @@ def lexy_mocks():
         yield _base_mocks(MockScraper, MockInit), MockFinder.return_value
 
 
-def test_lexy(runner, lexy_mocks):
+def test_lexy(runner, lexy_mocks) -> None:
     _, finder = lexy_mocks
     finder.language_finder = MagicMock()
     result = runner.invoke(lexy, ["python"])
     assert result.exit_code == 0
 
 
-def test_lexy_with_invalid_language(runner, lexy_mocks):
-    def fake_language_finder(lang):
+def test_lexy_with_invalid_language(runner, lexy_mocks) -> None:
+    def fake_language_finder(lang) -> None:
         click.secho(f"Language {lang} not found", fg="red")
         sys.exit(1)
 
@@ -54,7 +54,7 @@ def test_lexy_with_invalid_language(runner, lexy_mocks):
     assert "not found" in result.output
 
 
-def test_lexy_with_modified(runner, lexy_mocks):
+def test_lexy_with_modified(runner, lexy_mocks) -> None:
     scraper, _ = lexy_mocks
     scraper.last_modified.return_value = "12.03.2026"
     result = runner.invoke(lexy, ["modified"])
@@ -62,7 +62,7 @@ def test_lexy_with_modified(runner, lexy_mocks):
     assert "The most recent update to Lexy was on:" in result.output
 
 
-def test_lexy_list(runner, lexy_mocks):
+def test_lexy_list(runner, lexy_mocks) -> None:
     _, finder = lexy_mocks
     finder.get_language = MagicMock()
     result = runner.invoke(lexy, ["list"])
