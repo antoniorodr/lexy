@@ -1,19 +1,19 @@
 import subprocess
 import os
 import click
-from lexy_helpers.fetch_lexy import LexyScraper
+from lexy_helpers.fetch_lexy import LexyScraper, LanguageData
 from lexy_helpers.config import load_config, build_fzf_command, change_default_editor
 from pathlib import Path
 
 
 class LexyFinder:
-    def __init__(self, languages: list, lexy: LexyScraper):
-        self.available_languages = languages
-        self.scraper = lexy
-        self.homedir = Path.home()
-        self.directory = self.homedir / ".config/lexy/files"
+    def __init__(self, languages: list[LanguageData], lexy: LexyScraper) -> None:
+        self.available_languages: list[LanguageData] = languages
+        self.scraper: LexyScraper = lexy
+        self.homedir: Path = Path.home()
+        self.directory: Path = self.homedir / ".config/lexy/files"
         self.config = load_config()
-        self.editor = self.config.get("editor", {}).get("default_editor", "bat")
+        self.editor: str = self.config.get("editor", {}).get("default_editor", "bat")
 
         if self.editor not in ["bat", "nvim"]:
             click.secho(
