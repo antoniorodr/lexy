@@ -76,8 +76,6 @@ class LexyScraper:
 
         def process_language(language: Tag) -> LanguageData | None:
             language_name: str = str(language.get_text().strip())
-            if language_name == "AWK":
-                return None
             if not self.force and language_name in existing_names:
                 return None
             try:
