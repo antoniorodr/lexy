@@ -91,7 +91,7 @@ def change_default_editor(editor: str) -> None:
 
 
 def load_config():
-    config_path = create_config_file()
+    config_path: Path = create_config_file()
     config = {}
     if config_path.exists():
         try:
