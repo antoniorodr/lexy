@@ -8,16 +8,16 @@ authors = [
   { name = "Antonio Rodriguez", email = "kontakt@antoniorodriguez.no" },
 ]
 description = "Lexy is a lightweight CLI tool that fetches programming tutorials from 'Learn X in Y Minutes' directly into your terminal. Quickly search, learn, and reference code examples without leaving your workflow."
-version = "0.6.2"
+version = "0.6.3"
 readme = "README.md"
 license = { text = "Apache-2.0" }
 requires-python = ">=3.13"
 dependencies = [
-    "beautifulsoup4>=4.14.3",
-    "click>=8.3.2",
-    "requests>=2.33.1",
-    "tomlkit>=0.14.0",
-    "typer>=0.24.1",
+  "beautifulsoup4>=4.14.3",
+  "click>=8.3.2",
+  "requests>=2.33.1",
+  "tomlkit>=0.14.0",
+  "typer>=0.24.1",
 ]
 
 [project.urls]
@@ -36,8 +36,8 @@ addopts = "--cov=lexy --cov=lexy_helpers --cov-report=term-missing --cov-report=
 
 [dependency-groups]
 dev = [
-    "zensical>=0.0.33",
-    "pytest-cov>=7.1.0",
-    "pytest-asyncio>=1.3.0",
-    "pytest>=9.0.3",
+  "zensical>=0.0.33",
+  "pytest-cov>=7.1.0",
+  "pytest-asyncio>=1.3.0",
+  "pytest>=9.0.3",
 ]
