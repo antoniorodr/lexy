@@ -200,7 +200,7 @@ class LexyScraper:
             return None
 
     def _create_mapping(self) -> None:
-        self.lexy_dir.mkdir(exist_ok=True)
+        self.lexy_dir.mkdir(parents=True, exist_ok=True)
         self.log_path.mkdir(exist_ok=True)
         self.file_path.mkdir(exist_ok=True)
         self.json_path.mkdir(exist_ok=True)
