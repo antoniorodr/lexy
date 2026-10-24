@@ -1,11 +1,13 @@
 import click
 import pytest
 import sys
+from pathlib import Path
 from unittest.mock import MagicMock, mock_open, patch
 
 from click.testing import CliRunner
 
 from lexy.lexy import lexy
+from lexy_helpers.fetch_lexy import LexyScraper
 
 
 def _base_mocks(MockScraper, MockInit) -> MagicMock:
@@ -67,3 +69,16 @@ def test_lexy_list(runner, lexy_mocks) -> None:
     finder.get_language = MagicMock()
     result = runner.invoke(lexy, ["list"])
     assert result.exit_code == 0
+
+
+def test_scraper_creates_config_parent_when_missing(tmp_path, monkeypatch) -> None:
+    home = tmp_path / "home"
+    home.mkdir()
+    monkeypatch.setattr(Path, "home", lambda: home)
+
+    scraper = LexyScraper()
+
+    assert scraper.lexy_dir.is_dir()
+    assert scraper.log_path.is_dir()
+    assert scraper.file_path.is_dir()
+    assert scraper.json_path.is_dir()
