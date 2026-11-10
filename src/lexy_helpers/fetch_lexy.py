@@ -160,17 +160,19 @@ class LexyScraper:
                 f"{self.log_path}/last_update.txt", "r", encoding="utf-8"
             ) as file:
                 last_update: str = file.read()
-                days_since_last_update: int = (
-                    today - datetime.datetime.strptime(last_update, "%Y-%m-%d").date()
-                ).days
-                if days_since_last_update >= self.update_interval_days:
-                    self.force = True
-                    self.fetch_language()
-                    self.force = False
-        except FileNotFoundError:
+            days_since_last_update: int = (
+                today - datetime.datetime.strptime(last_update, "%Y-%m-%d").date()
+            ).days
+        except (FileNotFoundError, ValueError):
+            # A missing or corrupt timestamp is treated like "never updated".
             self.force = True
             self.fetch_language()
             self.create_log()
+            self.force = False
+            return
+        if days_since_last_update >= self.update_interval_days:
+            self.force = True
+            self.fetch_language()
             self.force = False
 
     def force_update(self) -> None:
@@ -196,7 +198,7 @@ class LexyScraper:
                 ).date()
                 last_update_strftime: str = last_update.strftime("%d.%m.%Y")
                 return last_update_strftime
-        except FileNotFoundError:
+        except (FileNotFoundError, ValueError):
             return None
 
     def _create_mapping(self) -> None:
