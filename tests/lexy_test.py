@@ -67,3 +67,18 @@ def test_lexy_list(runner, lexy_mocks) -> None:
     finder.get_language = MagicMock()
     result = runner.invoke(lexy, ["list"])
     assert result.exit_code == 0
+
+
+def test_auto_update_with_corrupt_log(tmp_path, monkeypatch) -> None:
+    from lexy_helpers.fetch_lexy import LexyScraper
+
+    monkeypatch.setenv("HOME", str(tmp_path))
+    scraper = LexyScraper()
+    scraper.log_path.mkdir(parents=True, exist_ok=True)
+    (scraper.log_path / "last_update.txt").write_text(
+        "garbage-not-a-date", encoding="utf-8"
+    )
+    with patch.object(LexyScraper, "fetch_language") as mock_fetch:
+        scraper.auto_update()
+    mock_fetch.assert_called_once_with()
+    assert scraper.force is False
