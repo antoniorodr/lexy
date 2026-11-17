@@ -14,6 +14,7 @@ class ConfigServices:
     def create_config_file() -> Path:
         config_path: Path = Path.home() / ".config/lexy/config.toml"
         if not config_path.exists():
+            config_path.parent.mkdir(parents=True, exist_ok=True)
             with config_path.open("w") as f:
                 f.write("[editor]\n")
                 f.write(tomlkit.dumps({"default_editor": "bat"}))
