@@ -1,9 +1,11 @@
-import subprocess
 import os
-import click
-from lexy_helpers.fetch_lexy import LexyScraper, LanguageData
-from lexy_helpers.config import load_config, build_fzf_command, change_default_editor
+import subprocess
 from pathlib import Path
+
+import click
+
+from lexy.services.config.config_services import ConfigServices
+from lexy.services.requests.lexy_scraper import LanguageData, LexyScraper
 
 
 class LexyFinder:
@@ -12,7 +14,7 @@ class LexyFinder:
         self.scraper: LexyScraper = lexy
         self.homedir: Path = Path.home()
         self.directory: Path = self.homedir / ".config/lexy/files"
-        self.config = load_config()
+        self.config = ConfigServices.load_config()
         self.editor: str = self.config.get("editor", {}).get("default_editor", "bat")
 
         if self.editor not in ["bat", "nvim"]:
@@ -45,7 +47,7 @@ class LexyFinder:
             subprocess.run([self.editor, full_path])
 
     def get_language(self):
-        fzf_command = build_fzf_command(self.config)
+        fzf_command = ConfigServices.build_fzf_command(self.config)
         subprocess.run(fzf_command, shell=True, cwd=self.directory)
 
     def _get_from_available_languages(self, requested_lang):
@@ -54,39 +56,3 @@ class LexyFinder:
                 return lang
 
         return None
-
-
-class LexyInit:
-    def __init__(self, lexy: LexyScraper):
-        self.lexy = lexy
-
-    def ensure_languages_file(self):
-        json_path = self.lexy.json_path
-        if not json_path.exists():
-            self.lexy.fetch_language()
-
-    def default_editor_setup(self):
-        changed = False
-        while not changed:
-            click.echo("\nPlease, choose your preferred editor:")
-            click.echo("===================================")
-            click.echo("1. bat (default)")
-            click.echo("2. nvim (read-only mode)")
-            choice = click.prompt("\nEnter the number of your choice", type=int)
-
-            if choice == 1:
-                change_default_editor("bat")
-                changed = True
-                click.secho(
-                    "\nDefault editor set to 'bat'.",
-                    fg="green",
-                )
-            elif choice == 2:
-                change_default_editor("nvim")
-                changed = True
-                click.secho(
-                    "\nDefault editor set to 'nvim'.",
-                    fg="green",
-                )
-            else:
-                click.secho("\nInvalid choice. Please try again.", fg="red")
