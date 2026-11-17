@@ -5,10 +5,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 17.11.2026
+
+### Added
+- Add app testing by @antoniorodr
+- Add tests for config module by @antoniorodr
+- Add `conftest.py` for test configuration by @antoniorodr
+- Add optional `config_path` param by @antoniorodr
+
+### Changed
+- Merge pull request #26 from antoniorodr/dependabot/uv/soupsieve-4.0 by @antoniorodr in [#26](https://github.com/antoniorodr/lexy/pull/26)
+- Bump soupsieve from 2.8.4 to 4.0 by @dependabot[bot]
+- Create config directory if it doesn't exist by @antoniorodr
+- Chore(pyproject): update build system to hatcling and bump version to by @antoniorodr
+- Rename `lexy_helpers` to `helpers` by @antoniorodr
+- Organize imports by @antoniorodr
+- Reorganize imports by @antoniorodr
+- Reorganize `fetch_lexy` into services by @antoniorodr
+- Reorganize lexy_helpers into services by @antoniorodr
+- Refactor(language_data): move language data fetching to a dedicated by @antoniorodr
+- Create ConfigServices to handle config operations by @antoniorodr
+- Move the config classes to separate files by @antoniorodr
+- Rename `config.py` to `defaults.py` by @antoniorodr
+- Update changelog to new version by @antoniorodr
+
+### Fixed
+- Correct cast usage in config_services.py by @antoniorodr
+
+### Removed
+- Delete old tests by @antoniorodr
+- Delete moved files by @antoniorodr
+
 ## [0.6.4] - 10.11.2026
 
 ### Changed
-- Bump project version
+- Bump project version by @antoniorodr
 - Merge pull request #24 from antoniorodr/dependabot/uv/certifi-2026.10.18 by @antoniorodr in [#24](https://github.com/antoniorodr/lexy/pull/24)
 - Bump certifi from 2026.2.25 to 2026.10.18 by @dependabot[bot]
 - Merge pull request #23 from antoniorodr/dependabot/uv/urllib3-2.8.0 by @antoniorodr in [#23](https://github.com/antoniorodr/lexy/pull/23)
@@ -33,7 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update changelog with last version by @antoniorodr
 
 ### Fixed
-- Handle missing directory in fetch_lexy helper
+- Handle missing directory in fetch_lexy helper by @antoniorodr
 
 ### New Contributors
 * @dependabot[bot] made their first contribution
@@ -260,6 +291,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * @antoniorodr made their first contribution
 * @blackthorne7 made their first contribution
 
+[0.7.0]: https://github.com/antoniorodr/lexy/compare/v0.6.4...v0.7.0
 [0.6.4]: https://github.com/antoniorodr/lexy/compare/v0.6.3...v0.6.4
 [0.6.3]: https://github.com/antoniorodr/lexy/compare/v0.6.2...v0.6.3
 [0.6.2]: https://github.com/antoniorodr/lexy/compare/v0.6.1...v0.6.2
