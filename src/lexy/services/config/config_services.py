@@ -32,8 +32,8 @@ class ConfigServices:
         return config_path
 
     @staticmethod
-    def change_default_editor(editor: str) -> None:
-        config_path: Path = ConfigServices.create_config_file()
+    def change_default_editor(editor: str, config_path: Path | None = None) -> None:
+        config_path: Path = config_path or ConfigServices.create_config_file()
 
         with config_path.open("r") as f:
             content: str = f.read().strip()
@@ -47,8 +47,8 @@ class ConfigServices:
             f.write(tomlkit.dumps(config))
 
     @staticmethod
-    def load_config():
-        config_path: Path = ConfigServices.create_config_file()
+    def load_config(config_path: Path | None = None) -> dict:
+        config_path: Path = config_path or ConfigServices.create_config_file()
         config = {}
         if config_path.exists():
             try:
