@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=61"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "lexy"
@@ -8,7 +8,7 @@ authors = [
   { name = "Antonio Rodriguez", email = "kontakt@antoniorodriguez.no" },
 ]
 description = "Lexy is a lightweight CLI tool that fetches programming tutorials from 'Learn X in Y Minutes' directly into your terminal. Quickly search, learn, and reference code examples without leaving your workflow."
-version = "0.6.4"
+version = "0.7.0"
 readme = "README.md"
 license = { text = "Apache-2.0" }
 requires-python = ">=3.13"
@@ -32,7 +32,7 @@ package-dir = { "" = "src" }
 
 [tool.pytest.ini_options]
 pythonpath = [".", "src"]
-addopts = "--cov=lexy --cov=lexy_helpers --cov-report=term-missing --cov-report=lcov:coverage.lcov"
+addopts = "--cov=lexy --cov=helpers --cov-report=term-missing --cov-report=lcov:coverage.lcov"
 
 [dependency-groups]
 dev = [
