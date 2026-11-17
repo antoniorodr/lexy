@@ -1,5 +1,6 @@
 import tomllib
 from pathlib import Path
+from typing import cast
 
 import tomlkit
 
@@ -47,13 +48,13 @@ class ConfigServices:
             f.write(tomlkit.dumps(config))
 
     @staticmethod
-    def load_config(config_path: Path | None = None) -> dict:
+    def load_config(config_path: Path | None = None) -> Config:
         config_path: Path = config_path or ConfigServices.create_config_file()
-        config = {}
+        config: Config = {}
         if config_path.exists():
             try:
                 with config_path.open("rb") as f:
-                    config = tomllib.load(f)
+                    config: Config = cast(Config, tomllib.load(f))
             except Exception as e:
                 print(f"Warning: Failed to load config: {e}")
         return config
