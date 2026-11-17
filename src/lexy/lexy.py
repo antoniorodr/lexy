@@ -1,7 +1,11 @@
-from lexy_helpers.fetch_lexy import LexyScraper, LanguageData
-from lexy_helpers.output_helpers import LexyFinder, LexyInit
-import click
 import json
+
+import click
+
+from lexy.services.lexy_helpers.lexy_finder import LexyFinder
+from lexy.services.lexy_helpers.lexy_init import LexyInit
+from lexy.services.requests.language_data import LanguageData
+from lexy.services.requests.lexy_scraper import LexyScraper
 
 
 @click.command()
