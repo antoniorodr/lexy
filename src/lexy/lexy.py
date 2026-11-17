@@ -2,8 +2,8 @@ import json
 
 import click
 
-from lexy.services.lexy_helpers.lexy_finder import LexyFinder
-from lexy.services.lexy_helpers.lexy_init import LexyInit
+from lexy.services.helpers.lexy_finder import LexyFinder
+from lexy.services.helpers.lexy_init import LexyInit
 from lexy.services.requests.language_data import LanguageData
 from lexy.services.requests.lexy_scraper import LexyScraper
 
