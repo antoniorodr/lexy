@@ -1,30 +1,24 @@
-from bs4 import BeautifulSoup
-from bs4.element import Tag
-import requests
-from concurrent.futures import Future
-from rich.progress import (
-    Progress,
-    SpinnerColumn,
-    BarColumn,
-    TaskID,
-    TimeRemainingColumn,
-    TextColumn,
-    TaskProgressColumn,
-)
+import datetime
 import json
 import re
-import datetime
+from concurrent.futures import Future, ThreadPoolExecutor, as_completed
 from pathlib import Path
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import TypedDict
+
 import click
+from bs4 import BeautifulSoup
+from bs4.element import Tag
+from rich.progress import (
+    BarColumn,
+    Progress,
+    SpinnerColumn,
+    TaskID,
+    TaskProgressColumn,
+    TextColumn,
+    TimeRemainingColumn,
+)
 
-
-class LanguageData(TypedDict):
-    language: str
-    language_url: str
-    language_file_url: str
-    file_extension: str
+import requests
+from lexy.services.requests.language_data import LanguageData
 
 
 class LexyScraper:
@@ -204,8 +198,3 @@ class LexyScraper:
         self.log_path.mkdir(exist_ok=True)
         self.file_path.mkdir(exist_ok=True)
         self.json_path.mkdir(exist_ok=True)
-
-
-if __name__ == "__main__":
-    lexy_scraper: LexyScraper = LexyScraper()
-    lexy_scraper.force_update()
